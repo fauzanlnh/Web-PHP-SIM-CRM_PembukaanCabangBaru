@@ -94,7 +94,7 @@
                         <a data-toggle='tooltip' data-placement='top' title='Ubah' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_produk&form=edit&id=$data[id_produk]'>
                             <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                         </a>
-                        <a data-toggle='tooltip' data-placement='top' title='Delete' style='margin-right:5px' class='btn btn-primary btn-sm' href='modules/produk/proses.php?act=delete&id=$data[id_produk]'>
+                        <a data-toggle='tooltip' data-placement='top' title='Delete' style='margin-right:5px' class='btn btn-danger btn-sm' href='modules/produk/proses.php?act=delete&id=$data[id_produk]'>
                                         <i style='color:#fff' class='glyphicon glyphicon-trash'></i>
                                     </a>
                         </div>";

@@ -17,12 +17,7 @@ else {
 		include "modules/beranda/view.php";
 	}
 	// Master Data
-	// SPK
-	elseif ($_GET['module'] == 'spk_cabang_baru') {
-		include "modules/spk_cabang_baru/view.php";
-	} elseif ($_GET['module'] == 'form_akun') {
-		include "modules/spk_cabang_baru/form.php";
-	}
+
 	// kritik dan saran
 	elseif ($_GET['module'] == 'kritik_saran') {
 		include "modules/kritik_saran/view.php";
@@ -40,6 +35,22 @@ else {
 		include "modules/produk/view.php";
 	} elseif ($_GET['module'] == 'form_produk') {
 		include "modules/produk/form.php";
+	}
+	// SPK
+	elseif ($_GET['module'] == 'spk_cabang_baru') {
+		include "modules/spk_cabang_baru/view.php";
+	} elseif ($_GET['module'] == 'form_spk_cabang_baru') {
+		include "modules/spk_cabang_baru/form.php";
+	} elseif ($_GET['module'] == 'spk_cabang_baru_detail') {
+		include "modules/spk_cabang_baru/form_detail.php";
+	}
+	// TRANSAKSI
+	elseif ($_GET['module'] == 'transaksi') {
+		include "modules/transaksi/view.php";
+	} elseif ($_GET['module'] == 'form_transaksi') {
+		include "modules/transaksi/form.php";
+	} elseif ($_GET['module'] == 'transaksi_detail') {
+		include "modules/transaksi/form_detail.php";
 	}
 }
 ?>

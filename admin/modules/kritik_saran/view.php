@@ -75,8 +75,8 @@
                       <td width='150' class='center'>$data[penanganan]</td>
                     <td class='center' width='100'>
                         <div>
-                        <a data-toggle='tooltip' data-placement='top' title='Ubah' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_kritik_saran&form=penanganan&id=$data[id_kritik_saran]'>
-                            <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
+                        <a data-toggle='tooltip' data-placement='top' title='Tangani' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_kritik_saran&form=penanganan&id=$data[id_kritik_saran]'>
+                            <i style='color:#fff' class='glyphicon glyphicon-check'></i>
                         </a>
                         </div>";
                             ?>
