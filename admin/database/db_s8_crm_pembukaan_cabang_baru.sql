@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2022 at 06:28 PM
+-- Generation Time: Aug 03, 2022 at 02:00 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -130,7 +130,8 @@ INSERT INTO `spk_cabang_baru_jawaban` (`id_jawaban`, `id_spk_cabang_baru`, `nama
 (1, 'SPK-0002', 'Bandung Selatan', 'tes', '1700', '1', '30', '9', '5', '140000000', 'Proses', '61.666666666667'),
 (2, 'SPK-0002', 'Bandung Utara', 'Tes', '1200', '2', '40', '3', '3', '180000000', 'Proses', '66.666666666667'),
 (3, 'SPK-0002', 'Bandung Barat', 'Tes', '1700', '3', '80', '8', '4', '80000000', 'Proses', '60'),
-(4, 'SPK-0002', 'Bandung Timur', 'Tes', '2100', '2', '60', '2', '6', '160000000', 'Proses', '86.666666666667');
+(4, 'SPK-0002', 'Bandung Timur', 'Tes', '2100', '2', '60', '2', '6', '160000000', 'Proses', '86.666666666667'),
+(7, 'SPK-0002', 'edit2', 'tes2', '1232', '1232', '1232', '1232', '1232', '1232', 'Proses', '60');
 
 -- --------------------------------------------------------
 
@@ -201,8 +202,7 @@ INSERT INTO `transaksi_detail` (`id_detail`, `id_transaksi`, `id_produk`, `harga
 (12, 'TRANSAKSI-0011', 'PRODUK-0001', 22000, 25, 550000, 'Checkout'),
 (13, 'TRANSAKSI-0012', 'PRODUK-0001', 22000, 25, 550000, 'Checkout'),
 (14, 'TRANSAKSI-0013', 'PRODUK-0001', 22000, 25, 550000, 'Checkout'),
-(16, 'TRANSAKSI-0015', 'PRODUK-0001', 22000, 25, 550000, 'Checkout'),
-(17, NULL, 'PRODUK-0001', 22000, 20, 440000, 'Keranjang');
+(16, 'TRANSAKSI-0015', 'PRODUK-0001', 22000, 25, 550000, 'Checkout');
 
 -- --------------------------------------------------------
 
@@ -294,13 +294,13 @@ ALTER TABLE `kritik_saran`
 -- AUTO_INCREMENT for table `spk_cabang_baru_jawaban`
 --
 ALTER TABLE `spk_cabang_baru_jawaban`
-  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

@@ -3,9 +3,16 @@ if ($_GET['module'] == 'spk_cabang_baru_detail') {
     $i = 1;
     $hasil = 0; ?>
     <?php
-    $ambil = $mysqli->query("SELECT * FROM spk_cabang_baru_jawaban where status='Add'");
-    $rows = mysqli_num_rows($ambil);
-    $ambil = $mysqli->query("SELECT * FROM spk_cabang_baru_jawaban where status='Add'");
+    if ($_GET['form'] = 'form_edit') {
+        $ambil = $mysqli->query("SELECT * FROM spk_cabang_baru_jawaban where id_spk_cabang_baru='$_GET[id_spk]'");
+        $rows = mysqli_num_rows($ambil);
+        $ambil = $mysqli->query("SELECT * FROM spk_cabang_baru_jawaban where id_spk_cabang_baru='$_GET[id_spk]'");
+    } else {
+        $ambil = $mysqli->query("SELECT * FROM spk_cabang_baru_jawaban where status='Add'");
+        $rows = mysqli_num_rows($ambil);
+        $ambil = $mysqli->query("SELECT * FROM spk_cabang_baru_jawaban where status='Add'");
+    }
+
     $hasil_keputusan = array();
     while ($pecah = $ambil->fetch_assoc()) {
         # Luat Tanah
@@ -222,7 +229,12 @@ if ($_GET['module'] == 'spk_cabang_baru_detail') {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ambil = $mysqli->query("SELECT * FROM spk_cabang_baru_jawaban where status='Add'");
+                                    if ($_GET['form'] = 'form_edit') {
+                                        $ambil = $mysqli->query("SELECT * FROM spk_cabang_baru_jawaban where id_spk_cabang_baru='$_GET[id_spk]'");
+                                    } else {
+                                        $ambil = $mysqli->query("SELECT * FROM spk_cabang_baru_jawaban where status='Add'");
+                                    }
+
                                     $no = 1;
                                     $x = 0;
                                     while ($pecah = $ambil->fetch_assoc()) {
@@ -300,19 +312,31 @@ if ($_GET['module'] == 'spk_cabang_baru_detail') {
                         </div><!-- /.box body -->
                         <div class="box-footer" style="margin-top: 20px;" class=" form-vertical">
                             <div class="row" style="float:right;">
-                                <div class="row">
-                                    <label class="col-sm-5 control-label">Hasil Keputusan</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="hasil_keputusan" autocomplete="off" readonly value="<?= $max ?>">
-                                    </div>
-                                </div>
+
                                 <div class="row">
                                     <div class="col-sm-5">
-                                        <a href="?module=produk" class="btn btn-default btn-reset">Batal</a>
+                                        <?php
+                                        if ($_GET['form'] = 'form_edit') { ?>
+                                            <a href="?module=form_spk_cabang_baru&form=edit&id=<?= $_GET['id_spk'] ?>" class="btn btn-default btn-reset">Kembali</a>
+                                        <?php } else {
+                                        ?>
+                                            <a href="?module=form_spk_cabang_baru&form=add" class="btn btn-default btn-reset">Kembali</a>
+                                        <?php
+                                        }
+                                        ?>
+
                                     </div>
                                     <div class="col-sm-6" style="float: right;">
                                         <input type="hidden" name="row" value="<?= $x ?>">
-                                        <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
+                                        <?php
+                                        if ($_GET['form'] = 'form_edit') { ?>
+                                            <input type="submit" class="btn btn-primary btn-submit" name="simpan_edit" value="Simpan">
+                                        <?php } else {
+                                        ?>
+                                            <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>

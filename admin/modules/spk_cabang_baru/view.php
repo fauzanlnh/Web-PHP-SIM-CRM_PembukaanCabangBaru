@@ -81,7 +81,7 @@
                                     <td width='150' class='center'>$data[tanggal]</td>
                                     <td width='150' class='center'>$data[nama_kota]</td>
                                     <td class='center' width='100'>
-                                    <a data-toggle='tooltip' data-placement='top' title='Ubah' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_transaksi&form=edit&id=$data[id_spk_cabang_baru]'>
+                                    <a data-toggle='tooltip' data-placement='top' title='Ubah' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_spk_cabang_baru&form=edit&id=$data[id_spk_cabang_baru]'>
                                         <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                                     </a>
                                     <a data-toggle='tooltip' data-placement='top' title='Delete' style='margin-right:5px' class='btn btn-danger btn-sm' href='modules/transaksi/proses.php?act=delete&id=$data[id_spk_cabang_baru]'>

@@ -89,8 +89,8 @@
                     <td class='center' width='100'>
                         <div>
                         
-                        <a data-toggle='tooltip' data-placement='top' title='Delete' style='margin-right:5px' class='btn btn-danger btn-sm' href='modules/transaksi/proses.php?act=delete&id=$data[id_transaksi]'>
-                                        <i style='color:#fff' class='glyphicon glyphicon-trash'></i>
+                        <a data-toggle='tooltip' data-placement='top' title='Print' style='margin-right:5px' class='btn btn-primary btn-sm' href='modules/transaksi/proses.php?act=print&id=$data[id_transaksi]'>
+                                        <i style='color:#fff' class='glyphicon glyphicon-print'></i>
                                     </a>
                         </div>";
                             ?>

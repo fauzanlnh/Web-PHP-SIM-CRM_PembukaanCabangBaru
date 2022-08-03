@@ -83,5 +83,92 @@ else {
             // jika berhasil tampilkan pesan berhasil simpan data
             header("location: ../../main.php?module=form_transaksi&form=add");
         }
+    } else if ($_GET['act'] == 'print') {
+        #'require('../../library/fpdf184/fpdf.php');
+        require('../../libraries/autoload.php');
+        $mpdf = new \Mpdf\Mpdf();
+        include '../../config/database.php';
+        // $ambil = $conn->query("SELECT * FROM pembelian  LEFT JOIN user  ON pembelian.id_pelanggan = user.id_pelanggan WHERE status_pembelian = 'Pesanan Selesai' AND tanggal_pembelian BETWEEN '$tgl_mulai' AND '$tgl_selesai' ");
+        $query = mysqli_query($mysqli, "SELECT * FROM transaksi,transaksi_detail,produk WHERE produk.id_produk = transaksi_detail.id_produk  and transaksi.id_transaksi = transaksi_detail.id_transaksi and transaksi_detail.id_transaksi = '$_GET[id]'") or die('Ada kesalahan pada query update : ' . mysqli_error($mysqli));
+        while ($pecah = $query->fetch_assoc()) {
+            $semuadata[] = $pecah;
+        }
+
+        function tgl_indo($tanggal)
+        {
+            $bulan = array(
+                1 =>   'Januari',
+                'Februari',
+                'Maret',
+                'April',
+                'Mei',
+                'Juni',
+                'Juli',
+                'Agustus',
+                'September',
+                'Oktober',
+                'November',
+                'Desember'
+            );
+            $pecahkan = explode('-', $tanggal);
+
+            // variabel pecahkan 0 = tanggal
+            // variabel pecahkan 1 = bulan
+            // variabel pecahkan 2 = tahun
+
+            return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+        }
+        $isi = "<p style='text-align: center; font-size: 30px; font-weight: bold;'>PASAR IKAN CIBARAJA</p>";
+        $isi .= "<p style='text-align: center; padding-top: -35px;'>Jl. Selajambe, Kec. Cisaat, Kabupaten Sukabumi, Jawa Barat 43152</p>";
+        $isi .= "<p style='text-align: center; padding-top: -15px; padding-bottom: -20px;'>(0266) 531-747</p>";
+        $isi .= "<hr>";
+        $isi .= "<p style='text-align: center; font-size: 24px; padding-top: -20px; font-weight: bold;'>Laporan Penjualan</p>";
+        $isi .= "<p style='text-align: left; padding-top: -20px;'>Kode Penjualan:  " . $_GET['id'] . " </p>";
+        $isi .= "<p style='text-align: left; padding-top: -20px;'>Tanggal Pembelian:  " . $semuadata[0]['tanggal_transaksi'] . " </p>";
+        $isi .= "<table border='1' width='100%' style='margin-top:10px;border-collapse: collapse; border-spacing: 0px; padding: 0px; font-size: 11px'>";
+        $isi .= "<thead>";
+        $isi .= " <tr>
+<th >No</th>
+<th >Nama barang</th>
+<th style='width: 85px;'>Harga Produk</th>
+<th >Jumlah</th>
+<th >Subtotal</th>
+</tr>";
+        $isi .= "</thead>";
+        $isi .= " <tbody>";
+        $total = 0;
+        $i = 1;
+        foreach ($semuadata as $key => $value) :
+            $baju_sablon = $value["harga_produk"] + $value["harga_sablon"];
+            $total += ($baju_sablon * $value["jumlah"]);
+            $isi .= " <tr>";
+            $isi .= " <th >" . $i++ . "</th>";
+            $isi .= "<td>" . $value["nama_produk"] . "</td>";
+            $isi .= "<td style='width: 130px;  text-align: center;'>Rp. " . number_format($value["harga_produk"]) . " </td>";
+            $isi .= "<td  style='text-align: center;'>" . $value["qty"] . " </td>";
+            $isi .= " <td style='width: 130px;  text-align: center;'>Rp.  " . number_format($value["subtotal_detail"]) . " </td>";
+            $isi .= "</tr>";
+        endforeach;
+        $isi .= "</tbody>";
+        $isi .= "<tfoot>";
+        $isi .= "<tr>";
+        $isi .= " <th colspan='4'>Diskon</th>";
+        $isi .= " <th>Rp. " . number_format($value["diskon"]) . " </th>";
+        $isi .= "</tr>";
+        $isi .= "<tr>";
+        $isi .= " <th colspan='4'>Total</th>";
+        $isi .= " <th>Rp. " . number_format($value["total_pembelian"]) . " </th>";
+        $isi .= "</tr>";
+        $isi .= "</tfoot>";
+        $isi .= "</table>";
+
+        $isi .= "<br>";
+
+
+
+
+        $mpdf->WriteHTML($isi);
+
+        $mpdf->Output('Struk Penjualan.pdf', 'I');
     }
 }
